@@ -3,7 +3,7 @@
 export.cfg
 export_presents.cfg
 
-# Importes translations
+# Imported translations
 
 *.translation
 
@@ -18,4 +18,4 @@ Builds/
 
 #Documentation/
 
-TempoeralAssets/
+TemporalAssets/
