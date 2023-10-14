@@ -1,15 +1,18 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/playerShip2_orange.png" type="Texture" id=1]
 [ext_resource path="res://Juego/Naves/Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Juego/Naves/Player/MaterialFisico.tres" type="PhysicsMaterial" id=3]
 [ext_resource path="res://Juego/Proyectiles/laser/LaserBeam2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Juego/Proyectiles/Canion.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Juego/Proyectiles/ProyectilPlayer.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 41.4367
 
 [node name="Player" type="RigidBody2D"]
+z_index = 50
+z_as_relative = false
 physics_material_override = ExtResource( 3 )
 linear_damp = 4.0
 script = ExtResource( 2 )
@@ -23,6 +26,7 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Canion" parent="." instance=ExtResource( 5 )]
+proyectil = ExtResource( 6 )
 
 [node name="LaserBeam2D" parent="Canion" instance=ExtResource( 4 )]
 position = Vector2( 42, 0 )
