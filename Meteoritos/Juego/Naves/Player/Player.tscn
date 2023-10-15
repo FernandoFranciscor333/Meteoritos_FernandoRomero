@@ -5,7 +5,7 @@
 [ext_resource path="res://Juego/Naves/Player/MaterialFisico.tres" type="PhysicsMaterial" id=3]
 [ext_resource path="res://Juego/Proyectiles/laser/LaserBeam2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Juego/Proyectiles/Canion.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Juego/Proyectiles/ProyectilPlayer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Juego/Naves/Player/Trail/Trail2D.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 41.4367
@@ -26,9 +26,21 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Canion" parent="." instance=ExtResource( 5 )]
-proyectil = ExtResource( 6 )
 
 [node name="LaserBeam2D" parent="Canion" instance=ExtResource( 4 )]
 position = Vector2( 42, 0 )
+
+[node name="PuntoTrail" type="Position2D" parent="."]
+position = Vector2( -17, 0 )
+
+[node name="Trail2D" parent="PuntoTrail" instance=ExtResource( 6 )]
+position = Vector2( -1, 0 )
+scale = Vector2( 1, 0.82 )
+points = PoolVector2Array( 0, 0, 60, 0 )
+width = 50.0
+is_emitting = true
+lifetime = 0.6
+max_points = 150
+target_path = NodePath("..")
 
 [editable path="Canion"]
