@@ -56,10 +56,8 @@ func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 
 func _process(delta: float) -> void:
 	player_input()
-	print(estado_actual)
 	
 #Metodos Custom
-
 func controlador_estados(nuevo_estado:int) -> void:
 	match nuevo_estado:
 		ESTADO.SPAWN:
@@ -73,6 +71,7 @@ func controlador_estados(nuevo_estado:int) -> void:
 		ESTADO.MUERTO:
 			colisionador.set_deferred("disabled", true)
 			canion.set_puede_disparar(true)
+			Eventos.emit_signal("nave_destruida", global_position, 3)
 			queue_free()
 		_:
 			printerr("Error de estado")
@@ -85,7 +84,6 @@ func esta_input_activo() -> bool:
 		
 	return true
 	
-
 
 func player_input() -> void:
 	if not esta_input_activo():
@@ -112,6 +110,8 @@ func player_input() -> void:
 	if Input.is_action_just_released("disparo_principal"):
 		canion.set_esta_disparando(false)
 	
+func destruir() -> void:
+	controlador_estados(ESTADO.MUERTO)
 
 ## Señales
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
