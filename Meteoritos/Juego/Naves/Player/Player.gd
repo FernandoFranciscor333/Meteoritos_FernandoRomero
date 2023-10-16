@@ -14,15 +14,26 @@ var dir_rotacion:int = 280
 onready var canion:Canion = $Canion
 onready var laser:RayoLaser = $Canion/LaserBeam2D
 onready var trail:Trail2D = $PuntoTrail/Trail2D
+onready var motor_sfx:Motor = $MotorSFX
 
 #Metodos
 func _unhandled_input(event:InputEvent) -> void:
 	if event.is_action_pressed("disparo_secundario"):
-		laser.set_is_casting(true)
+		laser.set_is_casting(true)		
 	if event.is_action_released("disparo_secundario"):
 		laser.set_is_casting(false)
+		
+	# Control trail y sonido motor
+	if event.is_action_pressed("mover_adelante"):
+		trail.set_max_points(trai_maxima)
+		motor_sfx.sonido_on()
+	elif event.is_action_pressed("mover_atras"):		
+		trail.set_max_points(0)
+		motor_sfx.sonido_on()
 	
-
+	if(event.is_action_released("mover_adelante")
+		 or event.is_action_released("mover_atras")):
+				motor_sfx.sonido_off()
 
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
@@ -38,10 +49,8 @@ func player_input() -> void:
 	empuje = Vector2.ZERO
 	if Input.is_action_pressed("mover_adelante"):
 		empuje = Vector2(potencia_motor, 0)
-		trail.set_max_points(trai_maxima)
 	elif Input.is_action_pressed("mover_atras"):
 		empuje = Vector2(-potencia_motor, 0)
-		trail.set_max_points(0)
 		
 	#Rotacion
 	dir_rotacion = 0

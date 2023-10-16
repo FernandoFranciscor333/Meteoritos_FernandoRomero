@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/playerShip2_orange.png" type="Texture" id=1]
 [ext_resource path="res://Juego/Naves/Player/Player.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Juego/Proyectiles/laser/LaserBeam2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Juego/Proyectiles/Canion.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Juego/Naves/Player/Trail/Trail2D.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Juego/Naves/Player/Motor/MotorSFX.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 41.4367
@@ -42,5 +43,7 @@ is_emitting = true
 lifetime = 0.6
 max_points = 150
 target_path = NodePath("..")
+
+[node name="MotorSFX" parent="." instance=ExtResource( 7 )]
 
 [editable path="Canion"]
