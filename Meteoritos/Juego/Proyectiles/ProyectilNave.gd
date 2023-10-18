@@ -1,9 +1,12 @@
 class_name Proyectil
 extends Area2D
 
+##Atributos export
+var danio:float = 2.0
+
 ##Atributos
 var velocidad:Vector2 = Vector2.ZERO
-var danio:float = 2.0
+
 
 ##Metodos
 func _physics_process(delta: float) -> void:
