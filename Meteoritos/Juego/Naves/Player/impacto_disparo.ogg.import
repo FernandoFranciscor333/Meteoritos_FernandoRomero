@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/impacto_disparo.ogg-3b1ab73c3e2f12d16bb9b57cd44d8e23.oggstr"
+
+[deps]
+
+source_file="res://Juego/Naves/Player/impacto_disparo.ogg"
+dest_files=[ "res://.import/impacto_disparo.ogg-3b1ab73c3e2f12d16bb9b57cd44d8e23.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
