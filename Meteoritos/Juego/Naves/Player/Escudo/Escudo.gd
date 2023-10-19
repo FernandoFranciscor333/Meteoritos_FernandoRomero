@@ -48,3 +48,7 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 ## Setters y Getters
 func get_esta_activado() -> bool:
 	return esta_activado
+
+
+func _on_body_entered(body: Node) -> void:
+	body.queue_free()
