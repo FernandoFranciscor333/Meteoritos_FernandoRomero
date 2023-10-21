@@ -39,11 +39,12 @@ func _on_nave_destruida(posicion: Vector2, num_explosiones:int) -> void:
 		yield(get_tree().create_timer(0.6), "timeout")
 
 ## Conexión señales externas
-func _on_spawn_meteoritos(pos_spawn:Vector2,dir_meteorito:Vector2) -> void:
+func _on_spawn_meteoritos(pos_spawn:Vector2,dir_meteorito:Vector2, tamanio:float) -> void:
 	var new_meteorito:Meteorito = meteorito.instance()
 	new_meteorito.crear(
 		pos_spawn,
-		dir_meteorito
+		dir_meteorito,
+		tamanio
 	)
 	contenedor_meteoritos.add_child(new_meteorito)
 
