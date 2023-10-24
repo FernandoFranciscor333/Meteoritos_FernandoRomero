@@ -6,6 +6,8 @@ export var vel_lineal_base:Vector2 = Vector2(300,300)
 export var vel_ang_base:float = 3.0
 export var hitpoints_base:float = 10.0
 
+onready var animacion:AnimationPlayer = $AnimationPlayer
+
 ## Atributos
 var hitpoints:float
 
@@ -34,4 +36,17 @@ func crear(pos:Vector2, dir: Vector2, tamanio:float) -> void:
 	#Calcular hitpoints
 	hitpoints = hitpoints_base * tamanio
 	
+
+## Metodos Custom	
+func recibir_danio(danio:float) -> void:
+	hitpoints -= danio
+	if hitpoints <= 0:
+		destruir()
+		
+	$impacto_sfx.play()	
+	animacion.play("impacto2")
 	
+func destruir():		
+	$CollisionShape2D.set_deferred("disabled",true)
+	Eventos.emit_signal("meteorito_destruido", global_position)
+	queue_free()

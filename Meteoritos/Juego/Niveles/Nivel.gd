@@ -8,6 +8,7 @@ onready var contenedor_meteoritos:Node
 ## Atributos Export
 export var explosion:PackedScene = null
 export var meteorito:PackedScene = null
+export var explosion_meteorito:PackedScene = null
 
 ## Metodos
 func _ready() -> void:
@@ -19,6 +20,7 @@ func conectar_seniales() -> void:
 	Eventos.connect("disparo",self, "_on_disparo")
 	Eventos.connect("nave_destruida", self, "_on_nave_destruida")
 	Eventos.connect("spawn_meteorito", self, "_on_spawn_meteoritos")
+	Eventos.connect("meteorito_destruido", self, "_on_meteorito_destruido")
 	
 func crear_contenedores() -> void:
 	contenedor_proyectiles = Node.new()
@@ -37,6 +39,11 @@ func _on_nave_destruida(posicion: Vector2, num_explosiones:int) -> void:
 		new_exposion.global_position = posicion
 		add_child(new_exposion)
 		yield(get_tree().create_timer(0.6), "timeout")
+		
+func _on_meteorito_destruido(pos:Vector2) -> void:
+	var new_explosion:ExplosionMeteorito = explosion_meteorito.instance()
+	new_explosion.global_position = pos
+	add_child(new_explosion)
 
 ## Conexión señales externas
 func _on_spawn_meteoritos(pos_spawn:Vector2,dir_meteorito:Vector2, tamanio:float) -> void:
@@ -47,6 +54,8 @@ func _on_spawn_meteoritos(pos_spawn:Vector2,dir_meteorito:Vector2, tamanio:float
 		tamanio
 	)
 	contenedor_meteoritos.add_child(new_meteorito)
+	
+
 
 
 
